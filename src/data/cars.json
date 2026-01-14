@@ -1,0 +1,610 @@
+[
+    {
+        "id": 1,
+        "brand": "Maruti Suzuki",
+        "model": "Swift",
+        "bodyType": "Hatchback",
+        "fuel": "Petrol",
+        "price": 599000,
+        "priceLabel": "₹5.99 Lakh",
+        "mileage": "22.38 kmpl",
+        "seating": 5,
+        "useCase": [
+            "City",
+            "Daily Commute"
+        ],
+        "rating": 4.2,
+        "image": "https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": 2,
+        "brand": "Hyundai",
+        "model": "Creta",
+        "bodyType": "SUV",
+        "fuel": "Petrol",
+        "price": 1087000,
+        "priceLabel": "₹10.87 Lakh",
+        "mileage": "17.0 kmpl",
+        "seating": 5,
+        "useCase": [
+            "Family",
+            "Highway"
+        ],
+        "rating": 4.6,
+        "image": "https://images.unsplash.com/photo-1669408643034-7d5ebf917578?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": 3,
+        "brand": "Tata",
+        "model": "Nexon",
+        "bodyType": "SUV",
+        "fuel": "Petrol",
+        "price": 810000,
+        "priceLabel": "₹8.10 Lakh",
+        "mileage": "17.33 kmpl",
+        "seating": 5,
+        "useCase": [
+            "City",
+            "Safety",
+            "Family"
+        ],
+        "rating": 5,
+        "image": "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": 4,
+        "brand": "Mahindra",
+        "model": "Thar",
+        "bodyType": "SUV",
+        "fuel": "Diesel",
+        "price": 1125000,
+        "priceLabel": "₹11.25 Lakh",
+        "mileage": "15.2 kmpl",
+        "seating": 4,
+        "useCase": [
+            "Off-road",
+            "Adventure"
+        ],
+        "rating": 4.5,
+        "image": "https://images.unsplash.com/photo-1594502184342-2b6995b0f6ba?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": 5,
+        "brand": "Honda",
+        "model": "City",
+        "bodyType": "Sedan",
+        "fuel": "Petrol",
+        "price": 1157000,
+        "priceLabel": "₹11.57 Lakh",
+        "mileage": "17.8 kmpl",
+        "seating": 5,
+        "useCase": [
+            "City",
+            "Comfort",
+            "Highway"
+        ],
+        "rating": 4.7,
+        "image": "https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": 6,
+        "brand": "Tata",
+        "model": "Punch",
+        "bodyType": "SUV",
+        "fuel": "Petrol",
+        "price": 600000,
+        "priceLabel": "₹6.00 Lakh",
+        "mileage": "18.97 kmpl",
+        "seating": 5,
+        "useCase": [
+            "City",
+            "Micro SUV"
+        ],
+        "rating": 4.5,
+        "image": "https://images.unsplash.com/photo-1629897048590-b2658141753a?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": 7,
+        "brand": "Mahindra",
+        "model": "XUV700",
+        "bodyType": "SUV",
+        "fuel": "Diesel",
+        "price": 1403000,
+        "priceLabel": "₹14.03 Lakh",
+        "mileage": "16.0 kmpl",
+        "seating": 7,
+        "useCase": [
+            "Family",
+            "Highway",
+            "Tech"
+        ],
+        "rating": 4.8,
+        "image": "https://images.unsplash.com/photo-1632245889029-e412c6310564?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": 8,
+        "brand": "Maruti Suzuki",
+        "model": "Brezza",
+        "bodyType": "SUV",
+        "fuel": "Petrol",
+        "price": 829000,
+        "priceLabel": "₹8.29 Lakh",
+        "mileage": "19.8 kmpl",
+        "seating": 5,
+        "useCase": [
+            "City",
+            "Family"
+        ],
+        "rating": 4.4,
+        "image": "https://images.unsplash.com/photo-1658428172937-23b090b8f106?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": 9,
+        "brand": "Kia",
+        "model": "Seltos",
+        "bodyType": "SUV",
+        "fuel": "Diesel",
+        "price": 1090000,
+        "priceLabel": "₹10.90 Lakh",
+        "mileage": "20.8 kmpl",
+        "seating": 5,
+        "useCase": [
+            "City",
+            "Highway",
+            "Style"
+        ],
+        "rating": 4.5,
+        "image": "https://images.unsplash.com/photo-1617788138017-80ad40651399?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": 10,
+        "brand": "Hyundai",
+        "model": "i20",
+        "bodyType": "Hatchback",
+        "fuel": "Petrol",
+        "price": 746000,
+        "priceLabel": "₹7.46 Lakh",
+        "mileage": "20.35 kmpl",
+        "seating": 5,
+        "useCase": [
+            "City",
+            "Style"
+        ],
+        "rating": 4.3,
+        "image": "https://images.unsplash.com/photo-1606733220490-6724a87ad908?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": 11,
+        "brand": "Tata",
+        "model": "Nexon EV",
+        "bodyType": "SUV",
+        "fuel": "Electric",
+        "price": 1474000,
+        "priceLabel": "₹14.74 Lakh",
+        "mileage": "325 km",
+        "seating": 5,
+        "useCase": [
+            "City",
+            "Eco",
+            "Tech"
+        ],
+        "rating": 4.8,
+        "image": "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": 12,
+        "brand": "Maruti Suzuki",
+        "model": "Baleno",
+        "bodyType": "Hatchback",
+        "fuel": "Petrol",
+        "price": 661000,
+        "priceLabel": "₹6.61 Lakh",
+        "mileage": "22.35 kmpl",
+        "seating": 5,
+        "useCase": [
+            "City",
+            "Daily Commute"
+        ],
+        "rating": 4.3,
+        "image": "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": 13,
+        "brand": "Hyundai",
+        "model": "Venue",
+        "bodyType": "SUV",
+        "fuel": "Petrol",
+        "price": 777000,
+        "priceLabel": "₹7.77 Lakh",
+        "mileage": "17.5 kmpl",
+        "seating": 5,
+        "useCase": [
+            "City",
+            "Compact"
+        ],
+        "rating": 4.4,
+        "image": "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": 14,
+        "brand": "Mahindra",
+        "model": "Scorpio N",
+        "bodyType": "SUV",
+        "fuel": "Diesel",
+        "price": 1305000,
+        "priceLabel": "₹13.05 Lakh",
+        "mileage": "14.5 kmpl",
+        "seating": 7,
+        "useCase": [
+            "Off-road",
+            "Highway",
+            "Family"
+        ],
+        "rating": 4.6,
+        "image": "https://images.unsplash.com/photo-1633511049247-4f0464e83c07?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": 15,
+        "brand": "Tata",
+        "model": "Altroz",
+        "bodyType": "Hatchback",
+        "fuel": "Diesel",
+        "price": 660000,
+        "priceLabel": "₹6.60 Lakh",
+        "mileage": "23.64 kmpl",
+        "seating": 5,
+        "useCase": [
+            "City",
+            "Safety"
+        ],
+        "rating": 5,
+        "image": "https://images.unsplash.com/photo-1599385075677-497d519d084d?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": 16,
+        "brand": "Toyota",
+        "model": "Glanza",
+        "bodyType": "Hatchback",
+        "fuel": "Petrol",
+        "price": 681000,
+        "priceLabel": "₹6.81 Lakh",
+        "mileage": "22.3 kmpl",
+        "seating": 5,
+        "useCase": [
+            "City",
+            "Reliability"
+        ],
+        "rating": 4.2,
+        "image": "https://images.unsplash.com/photo-1621213600613-2dc7ddef40f1?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": 17,
+        "brand": "Maruti Suzuki",
+        "model": "Grand Vitara",
+        "bodyType": "SUV",
+        "fuel": "Hybrid",
+        "price": 1070000,
+        "priceLabel": "₹10.70 Lakh",
+        "mileage": "27.97 kmpl",
+        "seating": 5,
+        "useCase": [
+            "City",
+            "Highway",
+            "Eco"
+        ],
+        "rating": 4.5,
+        "image": "https://images.unsplash.com/photo-1619682817481-e994891cd1f5?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": 18,
+        "brand": "Kia",
+        "model": "Sonet",
+        "bodyType": "SUV",
+        "fuel": "Diesel",
+        "price": 779000,
+        "priceLabel": "₹7.79 Lakh",
+        "mileage": "24.1 kmpl",
+        "seating": 5,
+        "useCase": [
+            "City",
+            "Features"
+        ],
+        "rating": 4.4,
+        "image": "https://images.unsplash.com/photo-1632245889029-e412c6310564?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": 19,
+        "brand": "Honda",
+        "model": "Amaze",
+        "bodyType": "Sedan",
+        "fuel": "Petrol",
+        "price": 709000,
+        "priceLabel": "₹7.09 Lakh",
+        "mileage": "18.6 kmpl",
+        "seating": 5,
+        "useCase": [
+            "City",
+            "Family"
+        ],
+        "rating": 4.1,
+        "image": "https://images.unsplash.com/photo-1542362567-b07e54358753?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": 20,
+        "brand": "Skoda",
+        "model": "Slavia",
+        "bodyType": "Sedan",
+        "fuel": "Petrol",
+        "price": 1139000,
+        "priceLabel": "₹11.39 Lakh",
+        "mileage": "19.47 kmpl",
+        "seating": 5,
+        "useCase": [
+            "Highway",
+            "Performance"
+        ],
+        "rating": 5,
+        "image": "https://images.unsplash.com/photo-1555215695-3004980adade?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": 21,
+        "brand": "Volkswagen",
+        "model": "Virtus",
+        "bodyType": "Sedan",
+        "fuel": "Petrol",
+        "price": 1148000,
+        "priceLabel": "₹11.48 Lakh",
+        "mileage": "20.8 kmpl",
+        "seating": 5,
+        "useCase": [
+            "Highway",
+            "Performance",
+            "Safety"
+        ],
+        "rating": 5,
+        "image": "https://images.unsplash.com/photo-1541443131876-44b03de101c5?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": 22,
+        "brand": "Maruti Suzuki",
+        "model": "Dzire",
+        "bodyType": "Sedan",
+        "fuel": "CNG",
+        "price": 651000,
+        "priceLabel": "₹6.51 Lakh",
+        "mileage": "31.12 km/kg",
+        "seating": 5,
+        "useCase": [
+            "City",
+            "Mileage"
+        ],
+        "rating": 4.1,
+        "image": "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": 23,
+        "brand": "Tata",
+        "model": "Tiago EV",
+        "bodyType": "Hatchback",
+        "fuel": "Electric",
+        "price": 869000,
+        "priceLabel": "₹8.69 Lakh",
+        "mileage": "250 km",
+        "seating": 5,
+        "useCase": [
+            "City",
+            "Eco"
+        ],
+        "rating": 4.3,
+        "image": "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": 24,
+        "brand": "MG",
+        "model": "Astor",
+        "bodyType": "SUV",
+        "fuel": "Petrol",
+        "price": 1081000,
+        "priceLabel": "₹10.81 Lakh",
+        "mileage": "15.43 kmpl",
+        "seating": 5,
+        "useCase": [
+            "City",
+            "Tech"
+        ],
+        "rating": 4.5,
+        "image": "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": 25,
+        "brand": "Nissan",
+        "model": "Magnite",
+        "bodyType": "SUV",
+        "fuel": "Petrol",
+        "price": 600000,
+        "priceLabel": "₹6.00 Lakh",
+        "mileage": "20.0 kmpl",
+        "seating": 5,
+        "useCase": [
+            "City",
+            "Budget"
+        ],
+        "rating": 4.0,
+        "image": "https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": 26,
+        "brand": "Renault",
+        "model": "Kiger",
+        "bodyType": "SUV",
+        "fuel": "Petrol",
+        "price": 650000,
+        "priceLabel": "₹6.50 Lakh",
+        "mileage": "20.5 kmpl",
+        "seating": 5,
+        "useCase": [
+            "City",
+            "Budget"
+        ],
+        "rating": 4.0,
+        "image": "https://images.unsplash.com/photo-1621213600613-2dc7ddef40f1?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": 27,
+        "brand": "Citroen",
+        "model": "C3 Aircross",
+        "bodyType": "SUV",
+        "fuel": "Petrol",
+        "price": 999000,
+        "priceLabel": "₹9.99 Lakh",
+        "mileage": "18.5 kmpl",
+        "seating": 7,
+        "useCase": [
+            "Family",
+            "Space"
+        ],
+        "rating": 4.1,
+        "image": "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": 28,
+        "brand": "Maruti Suzuki",
+        "model": "Jimny",
+        "bodyType": "SUV",
+        "fuel": "Petrol",
+        "price": 1274000,
+        "priceLabel": "₹12.74 Lakh",
+        "mileage": "16.94 kmpl",
+        "seating": 4,
+        "useCase": [
+            "Off-road",
+            "Adventure"
+        ],
+        "rating": 4.3,
+        "image": "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": 29,
+        "brand": "Hyundai",
+        "model": "Verna",
+        "bodyType": "Sedan",
+        "fuel": "Petrol",
+        "price": 1096000,
+        "priceLabel": "₹10.96 Lakh",
+        "mileage": "20.6 kmpl",
+        "seating": 5,
+        "useCase": [
+            "Highway",
+            "Style",
+            "Performance"
+        ],
+        "rating": 5,
+        "image": "https://images.unsplash.com/photo-1617788138017-80ad40651399?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": 30,
+        "brand": "Maruti Suzuki",
+        "model": "Ciaz",
+        "bodyType": "Sedan",
+        "fuel": "Petrol",
+        "price": 930000,
+        "priceLabel": "₹9.30 Lakh",
+        "mileage": "20.04 kmpl",
+        "seating": 5,
+        "useCase": [
+            "City",
+            "Comfort"
+        ],
+        "rating": 4.2,
+        "image": "https://images.unsplash.com/photo-1542362567-b07e54358753?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": 31,
+        "brand": "Toyota",
+        "model": "Urban Cruiser Hyryder",
+        "bodyType": "SUV",
+        "fuel": "Hybrid",
+        "price": 1086000,
+        "priceLabel": "₹10.86 Lakh",
+        "mileage": "27.97 kmpl",
+        "seating": 5,
+        "useCase": [
+            "City",
+            "Eco",
+            "Family"
+        ],
+        "rating": 4.5,
+        "image": "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": 32,
+        "brand": "Tata",
+        "model": "Harrier",
+        "bodyType": "SUV",
+        "fuel": "Diesel",
+        "price": 1549000,
+        "priceLabel": "₹15.49 Lakh",
+        "mileage": "16.35 kmpl",
+        "seating": 5,
+        "useCase": [
+            "Highway",
+            "Safety",
+            "Space"
+        ],
+        "rating": 5,
+        "image": "https://images.unsplash.com/photo-1605218427360-6961d3748253?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": 33,
+        "brand": "Mahindra",
+        "model": "Bolero Neo",
+        "bodyType": "SUV",
+        "fuel": "Diesel",
+        "price": 963000,
+        "priceLabel": "₹9.63 Lakh",
+        "mileage": "17.29 kmpl",
+        "seating": 7,
+        "useCase": [
+            "Rural",
+            "Rough Roads",
+            "Family"
+        ],
+        "rating": 4.0,
+        "image": "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": 34,
+        "brand": "Maruti Suzuki",
+        "model": "Fronx",
+        "bodyType": "SUV",
+        "fuel": "Petrol",
+        "price": 746000,
+        "priceLabel": "₹7.46 Lakh",
+        "mileage": "22.89 kmpl",
+        "seating": 5,
+        "useCase": [
+            "City",
+            "Style"
+        ],
+        "rating": 4.4,
+        "image": "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": 35,
+        "brand": "Honda",
+        "model": "Elevate",
+        "bodyType": "SUV",
+        "fuel": "Petrol",
+        "price": 1100000,
+        "priceLabel": "₹11.00 Lakh",
+        "mileage": "16.92 kmpl",
+        "seating": 5,
+        "useCase": [
+            "Family",
+            "Highway",
+            "Comfort"
+        ],
+        "rating": 4.6,
+        "image": "https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&w=800&q=80"
+    }
+]

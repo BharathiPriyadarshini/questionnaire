@@ -1,0 +1,993 @@
+:root {
+  --primary-blue: #2563EB;
+  /* Enterprise Blue */
+  --primary-hover: #1d4ed8;
+  --bg-color: #F8FAFC;
+  /* Light gray/blue tint neutral */
+  --card-bg: #FFFFFF;
+  --text-main: #1E293B;
+  /* Slate 800 */
+  --text-muted: #64748B;
+  /* Slate 500 */
+  --border-color: #E2E8F0;
+  --border-focus: #2563EB;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --yellow-star: #FBBF24;
+  --badge-bg: #EFF6FF;
+  --badge-text: #2563EB;
+  --nav-height: 64px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+.questionnaire-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  max-width: 600px;
+  /* Mobile/Tablet focus, centered on desktop */
+  margin: 0 auto;
+  background: var(--bg-color);
+  position: relative;
+  /* Removed overflow: hidden to allow body scroll */
+}
+
+/* --- Top App Bar --- */
+.app-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  background: var(--bg-color);
+  z-index: 10;
+}
+
+.nav-icon-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.nav-icon-btn:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.progress-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 16px;
+}
+
+.progress-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 6px;
+}
+
+.progress-track {
+  width: 100%;
+  height: 4px;
+  background: #E2E8F0;
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--primary-blue);
+  border-radius: var(--radius-full);
+  transition: width 0.4s ease;
+}
+
+/* --- Main Content Area --- */
+.content-area {
+  flex: 1;
+  /* Removed overflow-y: auto */
+  padding: 24px 24px 100px;
+  /* Bottom padding for fixed footer */
+  display: flex;
+  flex-direction: column;
+}
+
+.question-text {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 32px;
+  line-height: 1.3;
+  text-align: left;
+  /* Align left for enterprise feel often */
+}
+
+/* --- Compact Answer Cards --- */
+.options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  /* Reduced gap */
+}
+
+/* Grid Override for Brands */
+.grid-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.option-card {
+  display: flex;
+  align-items: center;
+  padding: 12px 14px;
+  /* Reduced padding */
+  background: var(--card-bg);
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  box-shadow: var(--shadow-sm);
+  min-height: 56px;
+}
+
+/* Restore size for Grid Options */
+.grid-options .option-card {
+  min-height: 72px;
+  /* Taller */
+  padding: 16px;
+}
+
+.option-card:hover {
+  border-color: #CBD5E1;
+  /* Slight hover darken */
+  transform: translateY(-1px);
+}
+
+.option-card.selected {
+  border-color: var(--primary-blue);
+  background: #EFF6FF;
+  /* Very light blue tint */
+  box-shadow: var(--shadow-md);
+}
+
+.option-icon-wrapper {
+  width: 32px;
+  /* Smaller icon wrapper */
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #F1F5F9;
+  border-radius: 6px;
+  margin-right: 12px;
+  color: var(--text-muted);
+  transition: all 0.2s;
+}
+
+.option-card.selected .option-icon-wrapper {
+  background: var(--primary-blue);
+  color: #fff;
+}
+
+.option-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  /* Prevent spill */
+}
+
+.option-label {
+  font-size: 0.95rem;
+  /* Smaller font */
+  font-weight: 500;
+  color: var(--text-main);
+}
+
+.option-subtitle {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.check-indicator {
+  opacity: 0;
+  color: var(--primary-blue);
+  transform: scale(0.8);
+  transition: all 0.2s;
+  margin-left: 8px;
+  /* Ensure gap from text */
+}
+
+.option-card.selected .check-indicator {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Text Input Styling (Question 5) */
+.input-animate-wrapper {
+  animation: fadeIn 0.4s ease-out;
+}
+
+.text-input-container {
+  display: flex;
+  align-items: center;
+  background: var(--card-bg);
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  transition: all 0.2s;
+  box-shadow: var(--shadow-sm);
+}
+
+.text-input-container:focus-within {
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.input-icon {
+  color: var(--text-muted);
+  margin-right: 16px;
+}
+
+.city-input {
+  flex: 1;
+  border: none;
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: var(--text-main);
+  background: transparent;
+  outline: none;
+  font-family: var(--font-sans);
+}
+
+.city-input::placeholder {
+  color: #94A3B8;
+}
+
+/* --- Fixed Bottom Footer --- */
+.footer-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 16px 24px;
+  background: transparent;
+  border-top: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* Ends separation */
+  z-index: 10;
+}
+
+.back-button-footer {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  padding: 12px 16px;
+  border-radius: var(--radius-full);
+  transition: all 0.2s;
+}
+
+.back-button-footer:hover {
+  background: #F1F5F9;
+  color: var(--text-main);
+}
+
+.next-button {
+  /* Reset width to auto or specific width since it's now flex item on right */
+  width: auto;
+  min-width: 140px;
+  max-width: 250px;
+  background: var(--primary-blue);
+  color: #fff;
+  border: none;
+  padding: 14px 24px;
+  border-radius: var(--radius-full);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.next-button:hover {
+  background: var(--primary-hover);
+}
+
+.next-button:disabled {
+  background: #CBD5E1;
+  cursor: not-allowed;
+}
+
+/* --- ADJUSTED COMPARISON / DISCOVER PAGE --- */
+
+/* App Bar Re-use/Extension */
+.comparison-app-bar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  /* Title left aligned after back button */
+  gap: 16px;
+  padding: 16px 20px;
+  background: #FFFFFF;
+  /* White header for comparison */
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.page-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text-main);
+  margin: 0;
+}
+
+/* --- Adjust Content Area for Bottom Nav in Comparison --- */
+.results-page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  /* changed from height: 100vh */
+  background: var(--bg-color);
+  width: 100%;
+  max-width: 1200px;
+  /* Expanded for desktop */
+  margin: 0 auto;
+  position: relative;
+}
+
+.results-content-area {
+  flex: 1;
+  /* Removed overflow-y: auto */
+  padding: 20px;
+  /* Mobile padding for bottom nav */
+}
+
+/* App Bar Re-use/Extension */
+.comparison-app-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* Space out Header Left and Desktop Nav */
+  padding: 16px 20px;
+  background: #FFFFFF;
+  border-bottom: 1px solid var(--border-color);
+  width: 100%;
+  z-index: 20;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Desktop Nav - Hidden on Mobile */
+.desktop-nav {
+  display: none;
+  /* Hidden by default */
+  gap: 24px;
+}
+
+.desktop-nav-item {
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+
+.desktop-nav-item:hover {
+  background: #F1F5F9;
+  color: var(--text-main);
+}
+
+.desktop-nav-item.active {
+  color: var(--primary-blue);
+  background: #EFF6FF;
+}
+
+/* Bottom Nav - Shown on Mobile */
+.bottom-nav {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: var(--nav-height);
+  background: #FFFFFF;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 20;
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.03);
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #94A3B8;
+  flex: 1;
+  height: 100%;
+}
+
+.nav-item.active {
+  color: var(--primary-blue);
+}
+
+.cars-list-wrapper {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  /* Mobile first stack */
+  gap: 24px;
+}
+
+@media (min-width: 640px) {
+
+  /* Show desktop nav earlier on tablets */
+  .desktop-nav {
+    display: flex;
+  }
+
+  .bottom-nav {
+    display: none;
+  }
+
+  .results-content-area {
+    padding-bottom: 20px;
+  }
+}
+
+@media (min-width: 768px) {
+  .cars-list-wrapper {
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    /* Grid on tablet/desktop */
+  }
+
+  /* Desktop Nav Changes */
+  .desktop-nav {
+    display: flex;
+    /* Show on Desktop */
+  }
+
+  .bottom-nav {
+    display: none;
+    /* Hide Bottom Nav on Desktop */
+  }
+
+  .results-content-area {
+    padding-bottom: 20px;
+    /* Remove extra spacer for bottom nav */
+  }
+}
+
+/* Car Card Component - RESTORED SIZE */
+.result-card {
+  position: relative;
+  /* Context for absolute like button */
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  /* User requested rounded corners */
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  /* Soft shadow */
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+}
+
+.result-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+  /* More elevation on hover */
+}
+
+/* Image Area - RESTORED SIZE */
+.result-image-wrapper {
+  position: relative;
+  height: 140px;
+  /* Reduced to 140px */
+  background: #F1F5F9;
+  overflow: hidden;
+}
+
+.result-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Like Button on Card */
+.like-button-card {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 36px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s;
+  z-index: 5;
+}
+
+.like-button-card:hover {
+  background: #fff;
+  transform: scale(1.1);
+}
+
+.like-button-card.liked {
+  background: #FEF2F2;
+  /* Red-ish tint */
+  /* We will color the Icon inside */
+}
+
+/* Badges Container (Overlaid on Image) */
+.badge-overlay {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.highlight-badge {
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--text-main);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 100px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.highlight-badge.primary {
+  background: var(--primary-blue);
+  color: #fff;
+}
+
+/* Card Body - RESTORED SIZE */
+.result-body {
+  padding: 12px;
+  /* Reduced to 12px */
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: 1;
+  /* Pushes footer down */
+}
+
+/* Header: Name + Price */
+.result-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.result-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.result-model {
+  font-size: 1rem;
+  /* Reduced size */
+  font-weight: 700;
+  color: var(--text-main);
+  line-height: 1.2;
+}
+
+.result-price {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--primary-blue);
+  white-space: nowrap;
+}
+
+/* Rating */
+.rating-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.star-icon {
+  width: 16px;
+  height: 16px;
+  fill: var(--yellow-star);
+  color: var(--yellow-star);
+}
+
+.rating-text {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-left: 4px;
+}
+
+/* Specs Grid - RESTORED SIZE */
+.specs-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.spec-tag {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  /* Reduced padding */
+  background: #F8FAFC;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  font-size: 0.8rem;
+  /* Restored font */
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.spec-icon-small {
+  width: 14px;
+  height: 14px;
+  color: var(--text-muted);
+}
+
+/* CTA Footer - RESTORED SIZE */
+.result-footer {
+  padding: 8px 12px;
+  /* Reduced padding */
+  border-top: 1px solid var(--border-color);
+  background: #F8FAFC;
+}
+
+.view-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px;
+  /* Reduced padding */
+  border-radius: 8px;
+  background: white;
+  border: 1px solid var(--border-color);
+  color: var(--primary-blue);
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.view-btn:hover {
+  border-color: var(--primary-blue);
+  background: #EFF6FF;
+}
+
+.view-btn.primary {
+  background: var(--primary-blue);
+  color: white;
+  border: none;
+}
+
+.view-btn.primary:hover {
+  background: var(--primary-hover);
+}
+
+/* --- BOTTOM NAVIGATION BAR --- */
+.bottom-nav {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: var(--nav-height);
+  background: #FFFFFF;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 20;
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.03);
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #94A3B8;
+  /* Muted slate */
+  flex: 1;
+  height: 100%;
+}
+
+.nav-item.active {
+  color: var(--primary-blue);
+}
+
+.nav-item-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+
+/* --- Responsive Adjustments & Scrollbar --- */
+
+/* Global Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+
+/* Ensure scrollbar is visible in results on desktop if needed */
+.results-content-area {
+  scrollbar-width: thin;
+  scrollbar-color: #CBD5E1 transparent;
+}
+
+.results-content-area::-webkit-scrollbar {
+  display: block;
+  /* Show scrollbar */
+}
+
+/* --- Back Button Design (Matching Next Button) --- */
+.back-button-footer {
+  width: auto;
+  min-width: 120px;
+  background: var(--primary-blue);
+  border: none;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  padding: 14px 24px;
+  border-radius: var(--radius-full);
+  transition: all 0.2s;
+  box-shadow: var(--shadow-sm);
+}
+
+.back-button-footer:hover {
+  background: var(--primary-hover);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+/* --- Responsive Media Queries --- */
+@media (min-width: 768px) {
+  .questionnaire-wrapper {
+    max-width: 100%;
+    /* Full Width */
+    margin: 0;
+    min-height: 100vh;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    background: transparent;
+  }
+
+  /* Center Content within the Full Width Wrapper */
+  .app-bar,
+  .content-area,
+  .footer-bar {
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
+
+  /* Ensure Fixed Footer centers correctly */
+  .footer-bar {
+    left: 0;
+    right: 0;
+  }
+
+  /* Adjust Grid for Brands on Desktop */
+  .grid-options {
+    grid-template-columns: repeat(3, 1fr);
+    /* 3 Columns */
+    gap: 16px;
+  }
+
+  .grid-options .option-card {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    text-align: left;
+    min-height: 120px;
+  }
+
+  .grid-options .option-icon-wrapper {
+    margin-bottom: 12px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid-options {
+    grid-template-columns: repeat(4, 1fr);
+    /* 4 Columns on large screens */
+  }
+}
+
+.nav-item.active .nav-icon {
+  transform: translateY(-2px);
+}
+
+/* --- Carousel / Horizontal Layout Styles --- */
+.carousel-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Center the carousel content */
+}
+
+.cars-horizontal-track {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 10px 4px 24px 4px;
+  /* Padding for shadow clearance */
+  width: 100%;
+
+  /* Hide Scrollbar */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.cars-horizontal-track::-webkit-scrollbar {
+  display: none;
+}
+
+.horizontal-card {
+  min-width: 280px;
+  /* Mobile width */
+  max-width: 280px;
+  flex-shrink: 0;
+  height: auto;
+  background: var(--card-bg);
+  /* Previous card styles apply via .result-card class, horizontal-card overrides layout specifics */
+}
+
+@media (min-width: 768px) {
+  .horizontal-card {
+    min-width: 320px;
+    /* Desktop width */
+    max-width: 320px;
+  }
+}
+
+/* Carousel Buttons */
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: white;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 20;
+  transition: all 0.2s ease;
+}
+
+.carousel-btn:hover {
+  background: #F8FAFC;
+  transform: translateY(-50%) scale(1.1);
+  color: var(--primary-blue);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.carousel-btn.left {
+  left: -24px;
+}
+
+.carousel-btn.right {
+  right: -24px;
+}
+
+/* Hide buttons on mobile touch devices */
+@media (max-width: 768px) {
+  .carousel-btn {
+    display: none;
+  }
+
+  .carousel-wrapper {
+    margin: 0 -20px;
+    /* Negative margin to let cards touch screen edge */
+    width: calc(100% + 40px);
+  }
+
+  .cars-horizontal-track {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}

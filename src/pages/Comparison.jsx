@@ -66,16 +66,25 @@ function Comparison({ cars, onBack }) {
     ? cars.filter(c => wishlist.includes(c.id))
     : cars;
 
+  // Back button logic
+  const handleBack = () => {
+    if (activeTab !== "discover") {
+      setActiveTab("discover");
+    } else {
+      onBack();
+    }
+  };
+
   return (
     <div className="results-page-container">
       {/* Top Header - Show on Home/Discover/Wishlist */}
       <header className="comparison-app-bar">
         <div className="header-left">
-          <button className="nav-icon-btn" onClick={onBack} title="Restart">
+          <button className="nav-icon-btn" onClick={handleBack} title="Back">
             <ArrowLeft size={24} />
           </button>
           <h1 className="page-title">
-            {activeTab === "wishlist" ? "My Wishlist" : "Top Recommendations"}
+            {activeTab === "wishlist" ? "My Wishlist" : "riCommendations"}
           </h1>
         </div>
 
@@ -213,7 +222,7 @@ function Comparison({ cars, onBack }) {
         )}
       </main>
 
-      {/* Bottom Navigation Bar */}
+
 
     </div>
   );

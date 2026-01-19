@@ -1,10 +1,15 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowLeft, X, CheckCircle2,
-  MapPin, Gauge, Users, Car, Zap, DollarSign, Activity, ShieldCheck, Armchair, Building2, Loader2
+  MapPin, Gauge, Users, Car, Zap, IndianRupee, Activity, ShieldCheck, Armchair, Building2, Loader2
 } from "lucide-react";
 import localCars from "../data/cars";
+import cities from "../data/cities";
+import {
+  TataLogo, HyundaiLogo, SuzukiLogo, KiaLogo,
+  MahindraLogo, HondaLogo, ToyotaLogo, SkodaLogo
+} from "../components/BrandLogos";
 import "./questionnaire.css";
 
 function Questionnaire({ onCompare }) {
@@ -20,6 +25,12 @@ function Questionnaire({ onCompare }) {
     city: ""
   });
 
+  const [filteredCities, setFilteredCities] = useState([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [activeSuggestion, setActiveSuggestion] = useState(-1);
+  const cityInputRef = useRef(null);
+  const isSelectingRef = useRef(false);
+
   /* API Loading Effect Removed */
 
 
@@ -31,10 +42,10 @@ function Questionnaire({ onCompare }) {
       key: "budget",
       type: "single",
       options: [
-        { label: "Below ₹5 Lakhs", value: "low", icon: <DollarSign size={20} /> },
-        { label: "₹5 Lakhs – ₹10 Lakhs", value: "mid_low", icon: <DollarSign size={20} /> },
-        { label: "₹10 Lakhs – ₹20 Lakhs", value: "mid_high", icon: <DollarSign size={20} /> },
-        { label: "Above ₹20 Lakhs", value: "high", icon: <DollarSign size={20} /> }
+        { label: "Below ₹5 Lakhs", value: "low", icon: <IndianRupee size={20} /> },
+        { label: "₹5 Lakhs – ₹10 Lakhs", value: "mid_low", icon: <IndianRupee size={20} /> },
+        { label: "₹10 Lakhs – ₹20 Lakhs", value: "mid_high", icon: <IndianRupee size={20} /> },
+        { label: "Above ₹20 Lakhs", value: "high", icon: <IndianRupee size={20} /> }
       ]
     },
     {
@@ -43,14 +54,14 @@ function Questionnaire({ onCompare }) {
       key: "brands",
       type: "multi", // Enable multi-select
       options: [
-        { label: "Tata", subtitle: "Nexon, Harrier, Punch", value: "Tata", icon: <Car size={20} /> },
-        { label: "Hyundai", subtitle: "Creta, Verna, i20", value: "Hyundai", icon: <Car size={20} /> },
-        { label: "Maruti Suzuki", subtitle: "Swift, Brezza, Baleno", value: "Maruti Suzuki", icon: <Car size={20} /> },
-        { label: "Kia", subtitle: "Seltos, Sonet", value: "Kia", icon: <Car size={20} /> },
-        { label: "Mahindra", subtitle: "Thar, XUV700, Scorpio", value: "Mahindra", icon: <Car size={20} /> },
-        { label: "Honda", subtitle: "City, Amaze, Elevate", value: "Honda", icon: <Car size={20} /> },
-        { label: "Toyota", subtitle: "Fortuner, Glanza", value: "Toyota", icon: <Car size={20} /> },
-        { label: "Skoda", subtitle: "Slavia, Kushaq", value: "Skoda", icon: <Car size={20} /> }
+        { label: "Tata", subtitle: "Nexon, Harrier, Punch", value: "Tata", icon: <TataLogo size={24} /> },
+        { label: "Hyundai", subtitle: "Creta, Verna, i20", value: "Hyundai", icon: <HyundaiLogo size={24} /> },
+        { label: "Maruti Suzuki", subtitle: "Swift, Brezza, Baleno", value: "Maruti Suzuki", icon: <SuzukiLogo size={24} /> },
+        { label: "Kia", subtitle: "Seltos, Sonet", value: "Kia", icon: <KiaLogo size={24} /> },
+        { label: "Mahindra", subtitle: "Thar, XUV700, Scorpio", value: "Mahindra", icon: <MahindraLogo size={24} /> },
+        { label: "Honda", subtitle: "City, Amaze, Elevate", value: "Honda", icon: <HondaLogo size={24} /> },
+        { label: "Toyota", subtitle: "Fortuner, Glanza", value: "Toyota", icon: <ToyotaLogo size={24} /> },
+        { label: "Skoda", subtitle: "Slavia, Kushaq", value: "Skoda", icon: <SkodaLogo size={24} /> }
       ]
     },
     {
@@ -105,41 +116,117 @@ function Questionnaire({ onCompare }) {
     }
   };
 
+  /* Logic for text input */
   const handleTextChange = (e) => {
     setAnswers({ ...answers, [currentQuestion.key]: e.target.value });
   };
 
-  const handleNext = () => {
+  /* Logic for City Typeahead */
+  const handleCityChange = (e) => {
+    const val = e.target.value;
+    setAnswers({ ...answers, city: val });
+
+    if (val.trim().length >= 1) {
+      const matches = cities.filter(c =>
+        c.toLowerCase().includes(val.toLowerCase())
+      ).slice(0, 8); // Limit to 8
+
+      setFilteredCities(matches);
+      setShowSuggestions(true);
+      setActiveSuggestion(-1);
+    } else {
+      setShowSuggestions(false);
+    }
+  };
+
+  const handleCitySelect = (city) => {
+    isSelectingRef.current = true;
+    const newAnswers = { ...answers, city: city };
+    setAnswers(newAnswers);
+    setFilteredCities([]);
+    setShowSuggestions(false);
+    setActiveSuggestion(-1);
+
+    // Keep focus
+    if (cityInputRef.current) {
+      cityInputRef.current.focus();
+    }
+
+    // Reset selecting flag after a tick
+    setTimeout(() => { isSelectingRef.current = false; }, 100);
+  };
+
+  const handleCityKeyDown = (e) => {
+    if (showSuggestions && filteredCities.length > 0) {
+      if (e.key === "ArrowDown") {
+        e.preventDefault();
+        setActiveSuggestion(prev => (prev < filteredCities.length - 1 ? prev + 1 : 0));
+      } else if (e.key === "ArrowUp") {
+        e.preventDefault();
+        setActiveSuggestion(prev => (prev > 0 ? prev - 1 : filteredCities.length - 1));
+
+      } else if (e.key === "Enter") {
+        e.preventDefault();
+
+        // Use active suggestion or fallback to the first one
+        const targetCity = activeSuggestion >= 0 ? filteredCities[activeSuggestion] : filteredCities[0];
+
+        if (targetCity) {
+          handleCitySelect(targetCity);
+        }
+      } else if (e.key === "Escape") {
+        setShowSuggestions(false);
+      }
+    } else {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        if (answers.city.trim().length > 0) {
+          handleNext();
+        }
+      }
+    }
+  };
+
+  const highlightMatch = (text, query) => {
+    if (!query) return text;
+    const parts = text.split(new RegExp(`(${query})`, 'gi'));
+    return parts.map((part, i) =>
+      part.toLowerCase() === query.toLowerCase() ? <strong key={i}>{part}</strong> : part
+    );
+  };
+
+  const handleNext = (overrideAnswers = null) => {
     if (step < questions.length - 1) {
       setDirection(1);
       setStep(step + 1);
     } else {
-      handleSubmit();
+      handleSubmit(overrideAnswers);
     }
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (overrideAnswers = null) => {
+    const finalAnswers = overrideAnswers || answers;
     // Scoring Logic (Using carData state)
     const suggestedCars = carData.filter((car) => {
       let score = 0;
 
       // 1. Budget
       const price = car.price || 0;
-      if (answers.budget === "low" && price <= 500000) score += 5;
-      if (answers.budget === "mid_low" && price > 500000 && price <= 1000000) score += 5;
-      if (answers.budget === "mid_high" && price > 1000000 && price <= 2000000) score += 5;
-      if (answers.budget === "high" && price > 2000000) score += 5;
+      if (finalAnswers.budget === "low" && price <= 500000) score += 5;
+      if (finalAnswers.budget === "mid_low" && price > 500000 && price <= 1000000) score += 5;
+      if (finalAnswers.budget === "mid_high" && price > 1000000 && price <= 2000000) score += 5;
+      if (finalAnswers.budget === "high" && price > 2000000) score += 5;
 
       // 2. Brand Preference (Start Bonus)
-      if (answers.brands.length > 0) {
+      if (finalAnswers.brands.length > 0) {
         // Handle fuzzy match for brands (e.g. Maruti matches Maruti Suzuki)
-        if (answers.brands.some(b => (car.brand || "").includes(b))) score += 4;
+        if (finalAnswers.brands.some(b => (car.brand || "").includes(b))) score += 4;
       }
 
       // 3. Type
-      if (answers.type === "Electric") {
+      if (finalAnswers.type === "Electric") {
         if (car.fuel === "Electric") score += 5;
-      } else if (car.bodyType === answers.type) { // Normalized data uses bodyType
+      } else if (car.bodyType === finalAnswers.type) { // Normalized data uses bodyType
         score += 3;
       }
 
@@ -147,8 +234,8 @@ function Questionnaire({ onCompare }) {
       // car.useCase is usually an array (e.g. ["City", "Family"])
       if (Array.isArray(car.useCase)) {
         // rough match since answers.use is distinct string
-        if (car.useCase.some(u => answers.use.toLowerCase().includes(u.toLowerCase()))) score += 2;
-      } else if (car.useCase === answers.use) {
+        if (car.useCase.some(u => finalAnswers.use.toLowerCase().includes(u.toLowerCase()))) score += 2;
+      } else if (car.useCase === finalAnswers.use) {
         score += 2;
       }
 
@@ -191,7 +278,11 @@ function Questionnaire({ onCompare }) {
   // Handle Enter Key Navigation
   useEffect(() => {
     const handleKeyDown = (e) => {
+      // If suggestions are open, we rely on the input's own ONKEYDOWN handler
+      // to manage selection vs navigation. We ignore the global enter here.
       if (e.key === "Enter") {
+        if (showSuggestions) return;
+
         if (canProceed()) {
           e.preventDefault();
           handleNext();
@@ -200,7 +291,7 @@ function Questionnaire({ onCompare }) {
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [answers, step]);
+  }, [answers, step, showSuggestions]); // Added showSuggestions dependency
 
   /* Loading View Removed */
 
@@ -239,16 +330,48 @@ function Questionnaire({ onCompare }) {
             {/* Render based on Type */}
             {currentQuestion.type === "text" ? (
               <div className="input-animate-wrapper">
-                <div className="text-input-container">
-                  <Building2 className="input-icon" size={24} />
-                  <input
-                    type="text"
-                    className="city-input"
-                    placeholder={currentQuestion.placeholder}
-                    value={answers.city}
-                    onChange={handleTextChange}
-                    autoFocus
-                  />
+                <div className="relative-city-container">
+                  <div className="text-input-container">
+                    <Building2 className="input-icon" size={24} />
+                    <input
+                      ref={cityInputRef}
+                      type="text"
+                      className="city-input"
+                      placeholder={currentQuestion.placeholder}
+                      value={answers.city}
+                      onChange={handleCityChange}
+                      onKeyDown={handleCityKeyDown}
+                      autoFocus
+                      onBlur={() => {
+                        // Delay hide only if not clicking an option
+                        setTimeout(() => {
+                          if (!isSelectingRef.current) setShowSuggestions(false);
+                        }, 200);
+                      }}
+                    />
+                    {answers.city && (
+                      <div className="input-check-icon">
+                        <CheckCircle2 size={20} className="text-green-500" />
+                      </div>
+                    )}
+                  </div>
+                  {showSuggestions && filteredCities.length > 0 && (
+                    <ul className="city-suggestions-dropdown">
+                      {filteredCities.map((city, index) => (
+                        <li
+                          key={index}
+                          className={`city-suggestion-item ${index === activeSuggestion ? "active" : ""}`}
+                          onMouseDown={(e) => {
+                            e.preventDefault(); // Prevent blur
+                            handleCitySelect(city, false);
+                          }}
+                          onMouseEnter={() => setActiveSuggestion(index)}
+                        >
+                          {highlightMatch(city, answers.city)}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </div>
               </div>
             ) : (
@@ -298,7 +421,7 @@ function Questionnaire({ onCompare }) {
         <button
           className="next-button"
           disabled={!canProceed()}
-          onClick={handleNext}
+          onClick={() => handleNext()}
         >
           {step === totalSteps - 1 ? "Get Recommendations" : "Next"}
         </button>
